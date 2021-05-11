@@ -78,8 +78,6 @@ Intent intent =new Intent(MainActivity.this,Add_NotesActivity.class);
 startActivityForResult(intent,Request_code);
     }
 });
-
-
     }
 
     @Override
@@ -105,9 +103,9 @@ change.setVisibility(View.VISIBLE);
 
     @Override
     public void deleteItem(int position) {
-allNotes.remove(position);
         Room_Database.getInstance(MainActivity.this).dao_notes().delete(allNotes.get(position).getId());
-MyAdapter.setAllNotes(allNotes);
+
+        allNotes.remove(position);
         MyAdapter.notifyDataSetChanged();
 
     }
