@@ -40,4 +40,13 @@ String hob;
     public void setDelete(int delete) {
         this.delete = delete;
     }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

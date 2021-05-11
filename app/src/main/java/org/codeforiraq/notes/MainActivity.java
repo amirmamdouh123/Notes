@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnItemClick,SameItem{
+public  class MainActivity extends AppCompatActivity implements OnItemClick,SameItem{
 RecyclerView recycle;
 TextView hob;
 ImageView delete;
@@ -88,6 +88,7 @@ startActivityForResult(intent,Request_code);
 change.setVisibility(View.VISIBLE);
         set.setVisibility(View.VISIBLE);
         set.setEnabled(true);
+
         MyAdapter.notifyDataSetChanged();
 
     }
@@ -105,6 +106,8 @@ change.setVisibility(View.VISIBLE);
     @Override
     public void deleteItem(int position) {
 allNotes.remove(position);
+        Room_Database.getInstance(MainActivity.this).dao_notes().delete(allNotes.get(position).getId());
+MyAdapter.setAllNotes(allNotes);
         MyAdapter.notifyDataSetChanged();
 
     }

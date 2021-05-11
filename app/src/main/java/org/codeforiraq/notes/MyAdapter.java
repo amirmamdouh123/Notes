@@ -26,6 +26,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         OnItemClickk = onItemClickk;
     }
 
+    public List<Entity> getAllNotes() {
+        return AllNotes;
+    }
+
+    public void setAllNotes(List<Entity> allNotes) {
+        AllNotes = allNotes;
+    }
 
     @NonNull
     @Override
@@ -75,9 +82,7 @@ same.clc(getAdapterPosition());
                 @Override
                 public void onClick(View v)
                 {
-                  same.deleteItem(getAdapterPosition());
-
-
+           same.deleteItem(getAdapterPosition());
                 }
             });
 

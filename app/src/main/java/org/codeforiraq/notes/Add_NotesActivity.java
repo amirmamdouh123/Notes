@@ -39,20 +39,18 @@ et_Note.setText(id_intent);
 
 
 
-
-
 save.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if (id_intent.isEmpty()){
             String note_description = et_Note.getText().toString();
-Entity note=new Entity (id_intent,note_description,R.drawable.ic_baseline_delete_24);
+Entity note=new Entity (note_description,Date,R.drawable.ic_baseline_delete_24);
 Room_Database.getInstance(Add_NotesActivity.this).dao_notes().insert_notes(note);
 
         }
         else {
             String note_description =et_Note.getText().toString();
-            Entity note=new Entity (id_intent,note_description,R.drawable.ic_baseline_delete_24);
+            Entity note=new Entity (note_description,Date,R.drawable.ic_baseline_delete_24);
             Room_Database.getInstance(Add_NotesActivity.this).dao_notes().update_notes(note);
 
 
