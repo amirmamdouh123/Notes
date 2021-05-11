@@ -3,6 +3,7 @@ package org.codeforiraq.notes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,25 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-ArrayList<Hobby> arrayList=new ArrayList<>();
+    List<Entity> AllNotes;
+    private OnItemClick OnItemClickk;
+    private SameItem same;
+  int id;
 
-private OnItemClick OnItemClickk;
-
-
-
-    public MyAdapter(ArrayList<Hobby> arrayList, org.codeforiraq.notes.OnItemClick onItemClick) {
-        this.arrayList = arrayList;
-        OnItemClickk = onItemClick;
-    }
-
-    public ArrayList<Hobby> getArrayList() {
-        return arrayList;
-    }
-
-    public void setArrayList(ArrayList<Hobby> arrayList) {
-        this.arrayList = arrayList;
+    public MyAdapter(List<Entity> allNotes, OnItemClick onItemClickk) {
+        AllNotes = allNotes;
+        OnItemClickk = onItemClickk;
     }
 
     @NonNull
@@ -40,7 +33,7 @@ private OnItemClick OnItemClickk;
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Hobby h=arrayList.get(position);
+        Entity h=AllNotes.get(position);
         holder.date.setText(h.getDate());
 holder.hob.setText(h.getHob());
 holder.delete.setImageResource(h.getDelete());
@@ -48,7 +41,7 @@ holder.delete.setImageResource(h.getDelete());
     }
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return AllNotes.size();
     }
 
 
@@ -56,6 +49,7 @@ holder.delete.setImageResource(h.getDelete());
 TextView hob ,date;
 ImageView delete;
 EditText change;
+Button set;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         hob=itemView.findViewById(R.id.hobby);
@@ -63,21 +57,34 @@ EditText change;
             delete=itemView.findViewById(R.id.delete);
 change=itemView.findViewById(R.id.change);
 change.setVisibility(View.INVISIBLE);
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                  OnItemClickk.OnOneClick(getAdapterPosition());
-                }
-            });
-hob.setOnClickListener(new View.OnClickListener() {
+set=itemView.findViewById(R.id.set);
+            set.setVisibility(View.INVISIBLE);
+set.setEnabled(false);
+
+itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        OnItemClickk.OnLongClick(getAdapterPosition());
-
-        change.setVisibility(View.VISIBLE);
-
+same.clc(getAdapterPosition());
     }
 });
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                  same.deleteItem(getAdapterPosition());
+                }
+            });
+
+set.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        String x= change.getText().toString();
+        hob.setText(x);
+        change.setText("");
+    }
+});
+
         }
     }
 

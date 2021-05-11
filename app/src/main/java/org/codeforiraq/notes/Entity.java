@@ -1,13 +1,17 @@
 package org.codeforiraq.notes;
+import androidx.room.*;
+@androidx.room.Entity (tableName = "Notes_table")
 
-import android.widget.ImageView;
 
-public class Hobby {
+public class Entity {
+@PrimaryKey(autoGenerate = true)
+int id ;
+String hob;
+        String date;
 
-String hob,date;
-int delete;
+    int delete;
 
-    public Hobby(String hob,String date,int delete) {
+    public Entity(String hob,String date,int delete) {
         this.hob = hob;
         this.date=date;
         this.delete=delete;
