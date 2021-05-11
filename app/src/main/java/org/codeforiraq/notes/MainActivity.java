@@ -46,8 +46,13 @@ set=findViewById(R.id.set);
 
 
 
-        Room_Database.getInstance(MainActivity.this).dao_notes().getNotes();
-         MyAdapter=new MyAdapter(allNotes, new OnItemClick() {
+    allNotes=    Room_Database.getInstance(MainActivity.this).dao_notes().getNotes();
+
+
+    allNotes.add(new Entity("Shoping",Date,R.drawable.ic_baseline_delete_24));
+        allNotes.add(new Entity("Eating",Date,R.drawable.ic_baseline_delete_24));
+
+        MyAdapter=new MyAdapter(allNotes, new OnItemClick() {
              @Override
              public void OnOneClick(Entity notes) {
 
@@ -59,6 +64,8 @@ set=findViewById(R.id.set);
              }
 
          });
+
+
         recycle.setAdapter(MyAdapter);
         recycle.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,9 +81,6 @@ startActivityForResult(intent,Request_code);
 
 
     }
-
-
-
 
     @Override
     public void clc(int postion) {
@@ -94,6 +98,8 @@ change.setVisibility(View.VISIBLE);
         intent.putExtra("note",notes.getHob());
         intent.putExtra("id",notes.getDate());
         startActivityForResult(intent,Request_code);
+        MyAdapter.notifyDataSetChanged();
+
     }
 
     @Override

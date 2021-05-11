@@ -1,5 +1,6 @@
 package org.codeforiraq.notes;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         AllNotes = allNotes;
         OnItemClickk = onItemClickk;
     }
+
 
     @NonNull
     @Override
@@ -61,6 +63,7 @@ set=itemView.findViewById(R.id.set);
             set.setVisibility(View.INVISIBLE);
 set.setEnabled(false);
 
+
 itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -73,6 +76,8 @@ same.clc(getAdapterPosition());
                 public void onClick(View v)
                 {
                   same.deleteItem(getAdapterPosition());
+
+
                 }
             });
 
@@ -82,7 +87,10 @@ set.setOnClickListener(new View.OnClickListener() {
         String x= change.getText().toString();
         hob.setText(x);
         change.setText("");
+        notifyDataSetChanged();
+
     }
+
 });
 
         }

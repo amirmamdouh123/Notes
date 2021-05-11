@@ -20,6 +20,7 @@
         android:layout_below="@+id/neww"
         android:layout_marginLeft="300dp"
         android:text="set"
+        android:id="@+id/save"
 
         />
 </RelativeLayout>
