@@ -21,9 +21,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private SameItem same;
   int id;
 
-    public MyAdapter(List<Entity> allNotes, OnItemClick onItemClickk) {
+    public MyAdapter(List<Entity> allNotes, OnItemClick onItemClickk,SameItem same) {
         AllNotes = allNotes;
         OnItemClickk = onItemClickk;
+        this.same=same;
     }
 
     public List<Entity> getAllNotes() {

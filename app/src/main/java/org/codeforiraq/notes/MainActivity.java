@@ -53,17 +53,35 @@ set=findViewById(R.id.set);
         allNotes.add(new Entity("Eating",Date,R.drawable.ic_baseline_delete_24));
 
         MyAdapter=new MyAdapter(allNotes, new OnItemClick() {
-             @Override
-             public void OnOneClick(Entity notes) {
+            @Override
+            public void OnOneClick(Entity notes) {
 
-                Intent intent =new Intent(MainActivity.this,Add_NotesActivity.class);
-                 intent.putExtra("hob",notes.getHob());
-                 intent.putExtra("date",Date);
-                 startActivityForResult(intent,Request_code);
+                Intent intent = new Intent(MainActivity.this, Add_NotesActivity.class);
+                intent.putExtra("hob", notes.getHob());
+                intent.putExtra("date", Date);
+                startActivityForResult(intent, Request_code);
 
-             }
+            }
 
-         });
+        }, new SameItem() {
+            @Override
+            public void deleteItem(int position) {
+                Room_Database.getInstance(MainActivity.this).dao_notes().delete(allNotes.get(position).getId());
+
+                allNotes.remove(position);
+                MyAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void clc(int postion) {
+                change.setVisibility(View.VISIBLE);
+                set.setVisibility(View.VISIBLE);
+                set.setEnabled(true);
+
+                MyAdapter.notifyDataSetChanged();
+
+            }
+        });
 
 
         recycle.setAdapter(MyAdapter);
