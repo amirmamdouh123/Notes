@@ -74,9 +74,6 @@ set=findViewById(R.id.set);
 
             @Override
             public void clc(int postion) {
-                change.setVisibility(View.VISIBLE);
-                set.setVisibility(View.VISIBLE);
-                set.setEnabled(true);
 
                 MyAdapter.notifyDataSetChanged();
 

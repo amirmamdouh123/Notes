@@ -76,6 +76,10 @@ itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 same.clc(getAdapterPosition());
+        change.setVisibility(View.VISIBLE);
+        set.setVisibility(View.VISIBLE);
+        set.setEnabled(true);
+
     }
 });
 
@@ -94,6 +98,7 @@ set.setOnClickListener(new View.OnClickListener() {
         hob.setText(x);
         change.setText("");
         notifyDataSetChanged();
+
 
     }
 
